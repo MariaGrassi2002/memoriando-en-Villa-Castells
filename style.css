@@ -55,7 +55,7 @@ body {
 
   box-sizing: border-box;
 background-repeat: no-repeat;
-  background-size:100vw 80vh;
+  background-size:100vw 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -78,7 +78,7 @@ input, button {
   padding: 15px;
   border-radius: 10px;
   max-width: 90vw;
-  max-height: 80vh;
+  max-height: 90vh;
 }
 
 #popup-content img {
