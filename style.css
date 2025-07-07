@@ -143,5 +143,6 @@ img{
 .imputs{  border: none; 
   background-image: url('images/label.png'); /* reemplazá con tu imagen */
   background-repeat: no-repeat;
-    background-position: center right; width: 80vw;  background-size:85vw 7vh;   padding: 10px; }
+    background-position: center right; width: 80vw;  background-size:85vw 7vh;   padding: 10px;   color: black; /* texto visible */
+  font-size: 1rem; }
 
