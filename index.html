@@ -102,14 +102,22 @@
  <script src="jquery.js"></script>
   <script src="turn.js"></script>
 <script>
-  const pistas = {
-    1: 'images/Mesa de trabajo 5TupacCap1.png',
-    2: 'images/Mesa de trabajo 8TupacCap1.png',
-    3: 'images/Mesa de trabajo 11TupacCap1.png',
-    4: 'images/Mesa de trabajo 14TupacCap1.png',
-    5: 'images/Mesa de trabajo 17TupacCap1.png',
-  };
-
+const rangosPostas = {
+  cap1: [
+    { inicio: 3, fin: 4, numero: 1 },
+    { inicio: 5, fin: 6, numero: 2 },
+    { inicio: 7, fin: 8, numero: 3 },
+    { inicio: 9, fin: 10, numero: 4 },
+    { inicio: 11, fin: 12, numero: 5 }
+  ],
+  cap2: [
+    { inicio: 18, fin: 19, numero: 1 },
+    { inicio: 20, fin: 21, numero: 2 },
+    { inicio: 22, fin: 23, numero: 3 },
+    { inicio: 24, fin: 25, numero: 4 },
+    { inicio: 26, fin: 27, numero: 5 }
+  ]
+};
   const resueltas = Array(13).fill(false);
   resueltas[0] = true; // página de bienvenida no necesita validación
 
@@ -118,8 +126,10 @@
     const tema = document.getElementById("tema").value.trim();
     if (nombre !== "") {
       localStorage.setItem("equipo", nombre);
+      localStorage.setItem("tema", tema);
       document.getElementById("equipo-banner").textContent = nombre;
-      $('#flipbook').turn('next');
+       const paginaInicio = tema === "cap2" ? 18 : 2;
+      $('#flipbook').turn('page', paginaInicio);
     } else {
       alert("Por favor completá el nombre del equipo.");
     }
@@ -149,14 +159,29 @@
   }
 function mostrarPistaActual() {
   const pagina = $('#flipbook').turn('page');
-  const numeroPista = {
-    4: 1,
-    6: 2,
-    8: 3,
-    10: 4,
-    12: 5
-  }[pagina];
+ const tema = localStorage.getItem("tema");
 
+  let numeroPista = null;
+
+  if (tema === "cap2") {
+    const mapa = {
+      18: 1,
+      20: 2,
+      22: 3,
+      24: 4,
+      26: 5
+    };
+    numeroPista = mapa[pagina];
+  } else {
+    const mapa = {
+      4: 1,
+      6: 2,
+      8: 3,
+      10: 4,
+      12: 5
+    };
+    numeroPista = mapa[pagina];
+  }
   if (numeroPista) {
     mostrarPista(numeroPista);
   }
@@ -183,7 +208,15 @@ function mostrarPistaActual() {
 
     $('#flipbook').bind('turning', function (event, page) {
       const actual = $('#flipbook').turn('page');
-      const paginasBloqueadas = [4, 6, 8, 10, 12];
+     const tema = localStorage.getItem("tema");
+
+  let paginasBloqueadas;
+  if (tema === "cap2") {
+    paginasBloqueadas = [18, 21, 24, 27, 30];
+  } else {
+    paginasBloqueadas = [4, 6, 8, 10, 12];
+  }
+
       if (page > actual && paginasBloqueadas.includes(actual) && !resueltas[actual]) {
         event.preventDefault();
       }
@@ -192,7 +225,16 @@ function mostrarPistaActual() {
   } else {
     $('.botonPista').hide();
   }
-    });
+  
+const equipo = localStorage.getItem("equipo") || "";
+
+  const rangoActual = rangosPostas[tema].find(r => page >= r.inicio && page <= r.fin);
+  const numeroPosta = rangoActual ? rangoActual.numero : null; 
+   const texto = numeroPosta ? `#${numeroPosta} ${equipo}` : equipo;
+
+document.getElementById("equipo-banner").textContent = texto;
+});
+
   });
 </script>
 
