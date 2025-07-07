@@ -127,10 +127,8 @@ color: #FD2210;
   top: 75vh;
   background-size:85vw 7vh;
 
-
-  padding-right: 40px; /* espacio para escribir sin tapar imagen */
   background-color: transparent;
-  border: none; /* opcional: quitás bordes si no los querés */
+ 
   color: black; /* texto visible */
   font-size: 1rem;
   padding: 10px;
@@ -145,5 +143,5 @@ img{
 .imputs{  border: none; 
   background-image: url('images/label.png'); /* reemplazá con tu imagen */
   background-repeat: no-repeat;
-    background-position: center right; width: 80vw;  background-size:85vw 7vh;  }
+    background-position: center right; width: 80vw;  background-size:85vw 7vh;   padding: 10px; }
 
