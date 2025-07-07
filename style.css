@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #d84d4d;
+  font-family: sans-serif;
+}
+#popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+ z-index: 999;
+}
+#popup-content{
+  background-color: rgba(0, 0, 0, 0);
+}
+.botonPista {
+  position: fixed;
+  top: 5vh  ;
+  left: 5vw  ;
+  width: 60px  ;
+  height: auto  ;
+  z-index: 980;
+  cursor: pointer;
+  display: none;
+}
+#flipbook {
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.pag1{
+     background-image: url("images/Mesa de trabajo 1TupacCap1.png");
+     
+}
+.pag2{
+     background-image: url("images/Mesa de trabajo 2TupacCap1.png");
+}
+.pag3{
+     background-image: url("images/Mesa de trabajo 3TupacCap1.png");
+}
+.pag4{
+     background-image: url("images/Mesa de trabajo 4TupacCap1.png");
+}
+.pag5{
+     background-image: url("images/Mesa de trabajo 6TupacCap1.png");
+}
+.page {
+ 
+
+  box-sizing: border-box;
+background-repeat: no-repeat;
+  background-size:100vw 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.pag1 label{
+  padding-top: 30vh;
+}
+input, button {
+  margin: 10px;
+  font-size: 1rem;
+  padding: 8px;
+}
+
+
+
+#popup-content {
+  background: rgba(255, 255, 255, 0);
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+#popup-content img {
+  max-width: 100%;
+  height: auto;
+  z-index: 999;
+}
+
+#equipo-banner {
+    background-image: url('images/grupo.png'); /* reemplazá con tu imagen */
+  background-repeat: no-repeat;
+  background-size: 40vw auto;
+      transition: transform 0.2s;
+  position: fixed;
+  top: 5vh;
+  right: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Playpen Sans", cursive;
+  width: 40vw;
+text-align: center;
+color: #FD2210;
+ 
+  z-index: 100;
+}
+.boton-img {
+  width: 70vw; /* o el tamaño que prefieras */
+  height: auto;
+   position: fixed;
+  top: 85vh;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.boton-img:active {
+  transform: scale(0.95);
+}
+.input-con-fondo {
+  border: none;
+  background-image: url('images/label.png'); /* reemplazá con tu imagen */
+  background-repeat: no-repeat;
+    background-position: center right; /* podés ajustar esto */
+    width:80vw ;
+    height: auto;
+   position: fixed;
+  top: 75vh;
+  margin: 5vw;
+   background-size:80vw auto;
+
+
+  padding-right: 40px; /* espacio para escribir sin tapar imagen */
+  background-color: transparent;
+  border: none; /* opcional: quitás bordes si no los querés */
+  color: black; /* texto visible */
+  font-size: 1rem;
+  padding: 10px;
+}
+
+img{
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.imputs{  border: none; 
+  background-image: url('images/label.png'); /* reemplazá con tu imagen */
+  background-repeat: no-repeat;
+    background-position: center right; width: 80vw;  background-size:85vw 7vh;  }
+

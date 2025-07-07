@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<img src="images/pista.png" alt="Pista"  class="botonPista" onclick="  mostrarPistaActual()" />
+<!-- Nombre de equipo en la esquina superior -->
+<div id="equipo-banner"></div>
+
+<!-- Libro -->
+<div id="flipbook">
+  <!-- Página 0: Nombre de equipo y tema -->
+  <div class="page pag1"><label for=""></label>
+   
+    <input type="text" id="equipo" class="imputs" placeholder="Nombre del equipo:"/><br><br>
+    <input type="text" id="tema" class="imputs"  placeholder="La palabra clave es:" />
+
+     <img src="images/empezar.png" alt="Validar" class="boton-img"onclick="guardarEquipo()" />
+  </div>
+
+  <!-- Página 1: Introducción general -->
+  <div class="page pag2">
+    
+  </div>
+  
+  <!-- POSTA 1 -->
+  <div class="page pag3">   </div>
+  
+  <div class="page pag4">
+       
+    <input type="text" id="resp4"  class="input-con-fondo" />
+  
+    <img src="images/validar.png" alt="Validar" class="boton-img"onclick="validar(4, 'estacion gonnet')" />
+    <p id="feedback1"></p>
+  </div>
+
+  <!-- POSTA 2 -->
+  <div class="page pag5">   </div>
+  <div class="page pag6">
+       <img src="images/Mesa de trabajo 7TupacCap1.png" alt="">
+    <input type="text" id="resp6"  class="input-con-fondo" />
+   <img src="images/validar.png" alt="Validar" class="boton-img" onclick="validar(6, '1909')"/>
+  
+    <p id="feedback2"></p>
+  </div>
+
+  <!-- POSTA 3 -->
+  <div class="page pag7">   <img src="images/Mesa de trabajo 9TupacCap1.png" alt=""></div>
+  <div class="page pag8">
+       <img src="images/Mesa de trabajo 10TupacCap1.png" alt="">
+    <input type="text" id="resp8"  class="input-con-fondo" />
+
+   <img src="images/validar.png" alt="Validar" class="boton-img" onclick="validar(8, 'centro de fomento')"/>
+    <p id="feedback3"></p>
+  </div>
+
+  <!-- POSTA 4 -->
+  <div class="page pag9">   <img src="images/Mesa de trabajo 12TupacCap1.png" alt=""></div>
+  <div class="page pag10">
+    <img src="images/Mesa de trabajo 13TupacCap1.png" alt="">
+    <input type="text" id="resp10"  class="input-con-fondo" />
+    
+    <img src="images/validar.png" alt="Validar" class="boton-img" onclick="validar(10, 'pozos')"/>
+    <p id="feedback4"></p>
+  </div>
+
+  <!-- POSTA 5 -->
+  <div class="page pag11"><img src="images/Mesa de trabajo 15TupacCap1.png" alt=""></div>
+  <div class="page pag12">
+    <img src="images/Mesa de trabajo 16TupacCap1.png" alt="">
+    <input type="text" id="resp12"  class="input-con-fondo" />
+   
+    <img src="images/validar.png" alt="Validar" class="boton-img"onclick="validar(12, 'biblioteca tupac amaru')"/>
+    <p id="feedback5"></p>
+  </div>
+
+  <!-- Página final -->
+  <div class="page">
+    <h2>¡Felicitaciones!</h2>
+    <p>Has completado el recorrido.</p>
+  </div>
+</div>
+
+<!-- Popup de pista -->
+<div id="popup" onclick="cerrarPopup()" >
+  <div id="popup-content">
+    
+    <img id="pista-img" src="" alt="Imagen de pista" />
+   
+  </div>
+</div>
+
+<!-- JS -->
+
+ <script src="jquery.js"></script>
+  <script src="turn.js"></script>
+<script>
+  const pistas = {
+    1: 'images/Mesa de trabajo 5TupacCap1.png',
+    2: 'images/Mesa de trabajo 8TupacCap1.png',
+    3: 'images/Mesa de trabajo 11TupacCap1.png',
+    4: 'images/Mesa de trabajo 14TupacCap1.png',
+    5: 'images/Mesa de trabajo 17TupacCap1.png',
+  };
+
+  const resueltas = Array(13).fill(false);
+  resueltas[0] = true; // página de bienvenida no necesita validación
+
+  function guardarEquipo() {
+    const nombre = document.getElementById("equipo").value.trim();
+    const tema = document.getElementById("tema").value.trim();
+    if (nombre !== "") {
+      localStorage.setItem("equipo", nombre);
+      document.getElementById("equipo-banner").textContent = nombre;
+      $('#flipbook').turn('next');
+    } else {
+      alert("Por favor completá el nombre del equipo.");
+    }
+  }
+
+  function mostrarPista(n) {
+    document.getElementById("pista-img").src = pistas[n];
+    $('#popup').show();
+  
+  }
+
+  function cerrarPopup() {
+    $('#popup').hide();
+  }
+
+  function validar(pagina, respuestaCorrecta) {
+    const input = document.querySelector(`#resp${(pagina)}`);
+    const valor = input.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const feedback = document.getElementById(`feedback${(pagina -2) / 2}`);
+    if (valor === respuestaCorrecta) {
+    
+      resueltas[pagina] = true;
+        $('#flipbook').turn('next');
+    } else {
+   
+    }
+  }
+function mostrarPistaActual() {
+  const pagina = $('#flipbook').turn('page');
+  const numeroPista = {
+    4: 1,
+    6: 2,
+    8: 3,
+    10: 4,
+    12: 5
+  }[pagina];
+
+  if (numeroPista) {
+    mostrarPista(numeroPista);
+  }
+}
+  $(document).ready(function () {
+    $('#flipbook').turn({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      autoCenter: true,
+      display: 'single',
+        gradients: true,
+  elevation: 50,
+  when: {
+    turning: function(event, page, view) {
+      // ya tenés tu bloqueo de avance acá
+    }}
+    });
+
+    // mostrar nombre del equipo si ya se guardó antes
+    const equipoGuardado = localStorage.getItem("equipo");
+    if (equipoGuardado) {
+      document.getElementById("equipo-banner").textContent = equipoGuardado;
+    }
+
+    $('#flipbook').bind('turning', function (event, page) {
+      const actual = $('#flipbook').turn('page');
+      const paginasBloqueadas = [4, 6, 8, 10, 12];
+      if (page > actual && paginasBloqueadas.includes(actual) && !resueltas[actual]) {
+        event.preventDefault();
+      }
+        if (paginasBloqueadas.includes(page)) {
+    $('.botonPista').show();
+  } else {
+    $('.botonPista').hide();
+  }
+    });
+  });
+</script>
+
+
+</body>
+</html>
