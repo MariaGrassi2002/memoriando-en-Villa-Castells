@@ -8,7 +8,7 @@ body {
 #popup {
   position: fixed;
   top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  width: 100vw; height: 80vh;
   background-color: rgba(0, 0, 0, 0.6);
   display: none;
   justify-content: center;
@@ -30,7 +30,7 @@ body {
 }
 #flipbook {
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
 }
 
 
@@ -55,7 +55,7 @@ body {
 
   box-sizing: border-box;
 background-repeat: no-repeat;
-  background-size:100vw 100vh;
+  background-size:100vw 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -78,7 +78,7 @@ input, button {
   padding: 15px;
   border-radius: 10px;
   max-width: 90vw;
-  max-height: 90vh;
+  max-height: 80vh;
 }
 
 #popup-content img {
@@ -108,7 +108,7 @@ color: #FD2210;
   width: 70vw; /* o el tamaño que prefieras */
   height: auto;
    position: fixed;
-  top: 85vh;
+  top: 75vh;
   margin: 10px;
   cursor: pointer;
   transition: transform 0.2s;
@@ -124,7 +124,7 @@ color: #FD2210;
     width:80vw ;
     height: auto;
    position: fixed;
-  top: 75vh;
+  top: 65vh;
   margin: 5vw;
    background-size:80vw auto;
 
